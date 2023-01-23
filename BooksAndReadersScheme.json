@@ -1,0 +1,21 @@
+{
+    "name": "BookAndReader",
+    "columns": [
+        {
+            "name": "bookId",
+            "type": "int"
+        },
+        {
+            "name": "personId",
+            "type": "int"
+        },
+        {
+            "name": "dateOfGetting",
+            "type": "DateTime"
+        },
+	{
+	    "name": "dateOfReturning",
+	    "type": "DateTime"
+	}
+    ]
+}

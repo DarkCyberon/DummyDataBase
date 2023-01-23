@@ -1,0 +1,33 @@
+{
+    "name": "Book",
+    "columns": [
+        {
+            "name": "id",
+            "type": "int"
+        },
+        {
+            "name": "author",
+            "type": "string"
+        },
+        {
+            "name": "bookName",
+            "type": "string"
+        },
+        {
+            "name": "yearOfPublication",
+            "type": "int"
+        },
+        {
+            "name": "numberOfSection",
+            "type": "int"
+        },
+        {
+            "name": "numberOfShelf",
+            "type": "int"
+        },
+	{
+            "name": "isAccessible",
+            "type": "bool"
+        }
+    ]
+}

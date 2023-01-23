@@ -1,0 +1,13 @@
+{
+    "name": "Reader",
+    "columns": [
+        {
+            "name": "id",
+            "type": "int"
+        },
+        {
+            "name": "fullName",
+            "type": "string"
+        }
+    ]
+}
