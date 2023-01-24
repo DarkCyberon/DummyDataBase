@@ -3,18 +3,26 @@ using System.Collections.Generic;
 
 namespace Database{
   class ReadFiles{
-    public static List<Book> ReadBookData (string[] books){
+    public List<Book> ReadBookData (string[] books){
       var booksData = new List<Book> ();
       for (int i = 0; i < books.Length; i++) {
         string[] elements = books[i].Split(';');
 
-        int id = Int32.Parse(elements[0]);
-        string author = elements[1];
-        string name = elements[2];
-        int yearOfPublication = Int32.Parse(elements[3]);
-        int bookcaseId = Int32.Parse(elements[4]);
-        int shelfNumber = Int32.Parse(elements[5]);
-        bool isAccessable = bool.Parse(elements[6]);
+        const int bookIdIndex = 0;
+        const int bookAuthorIndex = 1;
+        const int bookNameIndex = 2;
+        const int bookYearOfPublicationIndex = 3;
+        const int bookBookcaseIdIndex = 4;
+        const int bookShelfNumberIndex = 5;
+        const int bookIsAccessable = 6;
+
+        int id = Int32.Parse(elements[bookIdIndex]);
+        string author = elements[bookAuthorIndex];
+        string name = elements[bookNameIndex];
+        int yearOfPublication = Int32.Parse(elements[bookYearOfPublicationIndex]);
+        int bookcaseId = Int32.Parse(elements[bookBookcaseIdIndex]);
+        int shelfNumber = Int32.Parse(elements[bookShelfNumberIndex]);
+        bool isAccessable = bool.Parse(elements[bookIsAccessable]);
 
         booksData.Add(new Book(id, author, name, yearOfPublication, bookcaseId, shelfNumber, isAccessable));
       }
@@ -23,13 +31,16 @@ namespace Database{
       return booksData;
     }
     
-    public static List<Reader> ReadReaderData (string[] readers){
+    public List<Reader> ReadReaderData (string[] readers){
       var readersData = new List<Reader> ();
       for (int i = 0; i < readers.Length; i++){
         string[] elements = readers[i].Split(';');
 
-        int id = Int32.Parse(elements[0]);
-        string name = elements[1];
+        const int readerIdIndex = 0;
+        const int readerNameIndex = 1;
+
+        int id = Int32.Parse(elements[readerIdIndex]);
+        string name = elements[readerNameIndex];
 
         readersData.Add(new Reader(id, name));
       }
@@ -38,16 +49,21 @@ namespace Database{
       return readersData;
     }
 
-    public static List<BookStatus> ReadBookStatusData (string[] booksStatuses, List<Book> books, List<Reader> readers){
+    public List<BookStatus> ReadBookStatusData (string[] booksStatuses, List<Book> books, List<Reader> readers){
       var booksStatusesData = new List<BookStatus>();
 
       for(int i = 0; i < booksStatuses.Length; i++ ) {
         string[] elements = booksStatuses[i].Split(';');
 
-        int bookId = Int32.Parse(elements[0]);
-        int readerId = Int32.Parse(elements[1]);
-        string takenDate = elements[2];
-        string returnDate = elements[3];
+        const int statusBookIdIndex = 0;
+        const int statusReaderIdIndex = 1;
+        const int statusTakenDateIndex = 2;
+        const int statusReturnDateIndex = 3;
+
+        int bookId = Int32.Parse(elements[statusBookIdIndex]);
+        int readerId = Int32.Parse(elements[statusReaderIdIndex]);
+        string takenDate = elements[statusTakenDateIndex];
+        string returnDate = elements[statusReturnDateIndex];
         
         booksStatusesData.Add(new BookStatus(books[bookId - 1], readers[readerId-1], takenDate));
       }

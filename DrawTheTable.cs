@@ -7,7 +7,7 @@ namespace Database {
     static int MaxReaderNameLength = 0;
     static int DateLength = 10; // 01.01.0001 = 10
     
-    public static void CollectTheTable (List<BookStatus> booksStatusesData, List<Book> booksData) {
+    public void CollectTheTable (List<BookStatus> booksStatusesData, List<Book> booksData) {
       var table = new StringBuilder();
       CountMaxReaderName(booksStatusesData);
       booksStatusesData = DeleteReapetingNotes(booksStatusesData);
@@ -23,7 +23,7 @@ namespace Database {
       Console.WriteLine(table);
     }
     
-    private static List<BookStatus> DeleteReapetingNotes (List<BookStatus> notes){
+    private List<BookStatus> DeleteReapetingNotes (List<BookStatus> notes){
       var result = new List<BookStatus>();
       foreach (var note in notes) {
         if (note.BookReturnDate == "") {
@@ -33,7 +33,7 @@ namespace Database {
       return result;
     }
 
-    private static void CountMaxReaderName (List<BookStatus> notes){
+    private void CountMaxReaderName (List<BookStatus> notes){
       foreach (var note in notes){
         int NameLength = note.Reader.Name.Length;
         if (NameLength > MaxReaderNameLength)
@@ -41,7 +41,7 @@ namespace Database {
       }
     }
     
-    private static StringBuilder DrawTheHead(){
+    private StringBuilder DrawTheHead(){
       var headOfTable = new StringBuilder();
       var separators = new List<string>();
       var headElements = new List<string>();
@@ -59,7 +59,7 @@ namespace Database {
       return headOfTable;
     }
 
-    private static StringBuilder DrawTheLineForAccesBook(Book book){
+    private StringBuilder DrawTheLineForAccesBook(Book book){
       var bookData = new List<string>();
       bookData.Add(book.Author.PadRight(Book.AuthorsMaxLength));
       bookData.Add(book.Name.PadRight(Book.BooksNamesMaxLength));
@@ -69,7 +69,7 @@ namespace Database {
       return CollectTheLine(bookData);
     }
 
-    private static StringBuilder DrawTheLineForTakenBook(BookStatus bookStatus){
+    private StringBuilder DrawTheLineForTakenBook(BookStatus bookStatus){
       var bookData = new List<string>();
       bookData.Add(bookStatus.Book.Author.PadRight(Book.AuthorsMaxLength));
       bookData.Add(bookStatus.Book.Name.PadRight(Book.BooksNamesMaxLength));
@@ -79,7 +79,7 @@ namespace Database {
       return CollectTheLine(bookData);
     }
     
-    private static StringBuilder CollectTheLine(List<string> elements){
+    private StringBuilder CollectTheLine(List<string> elements){
       var line = new StringBuilder();
 
       foreach (string element in elements)

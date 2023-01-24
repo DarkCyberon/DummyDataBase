@@ -3,6 +3,7 @@ namespace Database {
     public static int BooksNamesMaxLength = 0; //Длинна самого длинного названия
     public static int AuthorsMaxLength = 0; //Длина самого длинного "имени" автора
 
+
     public readonly int Id;
     public readonly string Author;
     public readonly string Name;

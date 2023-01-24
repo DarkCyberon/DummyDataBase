@@ -13,7 +13,7 @@ namespace Database {
       BookTakenDate = bookTakenDate;
     }
 
-    public static void ReturnBook (BookStatus bookStatus, string returnDate) {
+    public void ReturnBook (BookStatus bookStatus, string returnDate) {
       string takenDate = bookStatus.BookTakenDate;
       if (CheckTheDates(takenDate, returnDate))
         bookStatus.BookReturnDate = returnDate;
@@ -22,32 +22,33 @@ namespace Database {
       }  
     }
 
-    private static bool CheckTheDates (string takenDate, string returnDate) {
-      string[] partsTD = takenDate.Split(','); //0 - день, 1 - месяц, 2 - год
-      string[] partsRD = returnDate.Split(',');
+    private bool CheckTheDates (string takenDate, string returnDate) {
+
+     int[] takenDateArray = DateToArray(takenDate);
+      int[] returnDateArray = DateToArray(returnDate);
+
+      for (int i = 0; i < returnDateArray.Length; i++) {
+        if (returnDateArray[i] < takenDateArray[i]) 
+          return false;
+        else if (returnDateArray[i] > takenDateArray[i])
+          return true;
+      }
+      return true;
+    }
+
+    private int[] DateToArray(string date) {
       
-      int returnDay = Int32.Parse(partsRD[0]);
-      int returnMonth = Int32.Parse(partsRD[1]);
-      int returnYear = Int32.Parse(partsRD[2]);
+      const int dateDayIndex = 0;
+      const int dateMonthIndex = 1;
+      const int dateYearIndex = 2;
+      const char dateSeparator = '.';
 
-      int takenDay = Int32.Parse(partsTD[0]);
-      int takenMonth = Int32.Parse(partsTD[1]);
-      int takenYear = Int32.Parse(partsTD[2]);
-
-
-      if (returnYear < takenYear) 
-        return false;
-      else if (returnYear > takenYear)
-        return true;
-      if (returnMonth < takenMonth)
-        return false;
-      else if (returnMonth > takenMonth)
-        return true;
-      if (returnDay < takenDay) 
-        return false;
-      else if (returnDay >= takenDay)
-        return true;
-      return false;
+      string[] elements = date.Split(dateSeparator);
+      int day = Int32.Parse(partsRD[dateDayIndex]);
+      int month = Int32.Parse(partsRD[dateMonthIndex]);
+      int year = Int32.Parse(partsRD[dateYearIndex]);
+      
+      return new int[] { year, month, day };
     }
   }
 }
