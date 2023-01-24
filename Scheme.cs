@@ -8,10 +8,10 @@ namespace Database {
     public string name { get; private set;}
 
     [JsonProperty(PropertyName = "columns")]
-    public List<ElementOfScheme> Elements = new List<ElementOfScheme>;
+    public List<ElementOfScheme> Elements = new List<ElementOfScheme>();
 
     public static Scheme ReadScheme (string path) {
-      return JsonConvert.DeserializeObject<Scheme>(File.ReadAllLines(path));
+      return JsonConvert.DeserializeObject<Scheme>(File.ReadAllText(path));
     }
   }
 }

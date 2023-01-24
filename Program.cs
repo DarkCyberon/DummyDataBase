@@ -2,7 +2,7 @@ using System.IO;
 using System.Collections.Generic;
 
 namespace Database {
-  class Database {
+  class Program {
     public static void Main () {
       string[] books = File.ReadAllLines("../Books.csv");
       string[] readers = File.ReadAllLines("../Readers.csv");
