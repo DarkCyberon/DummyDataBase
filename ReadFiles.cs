@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Database{
   class ReadFiles{
-    public List<Book> ReadBookData (string[] books){
+    public static List<Book> ReadBookData (string[] books){
       var booksData = new List<Book> ();
       for (int i = 0; i < books.Length; i++) {
         string[] elements = books[i].Split(';');
@@ -31,7 +31,7 @@ namespace Database{
       return booksData;
     }
     
-    public List<Reader> ReadReaderData (string[] readers){
+    public static List<Reader> ReadReaderData (string[] readers){
       var readersData = new List<Reader> ();
       for (int i = 0; i < readers.Length; i++){
         string[] elements = readers[i].Split(';');
@@ -49,7 +49,7 @@ namespace Database{
       return readersData;
     }
 
-    public List<BookStatus> ReadBookStatusData (string[] booksStatuses, List<Book> books, List<Reader> readers){
+    public static List<BookStatus> ReadBookStatusData (string[] booksStatuses, List<Book> books, List<Reader> readers){
       var booksStatusesData = new List<BookStatus>();
 
       for(int i = 0; i < booksStatuses.Length; i++ ) {

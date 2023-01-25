@@ -13,7 +13,7 @@ namespace Database {
       BookTakenDate = bookTakenDate;
     }
 
-    public void ReturnBook (BookStatus bookStatus, string returnDate) {
+    public void ReturnBook (this BookStatus bookStatus, string returnDate) {
       string takenDate = bookStatus.BookTakenDate;
       if (CheckTheDates(takenDate, returnDate))
         bookStatus.BookReturnDate = returnDate;
@@ -36,7 +36,7 @@ namespace Database {
       return true;
     }
 
-    private int[] DateToArray(string date) {
+    private static int[] DateToArray(string date) {
       
       const int dateDayIndex = 0;
       const int dateMonthIndex = 1;
